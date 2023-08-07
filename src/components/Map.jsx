@@ -16,7 +16,8 @@ import { useUrlPosition } from "../hooks/useUrlPosition";
 
 function Map() {
   const { cities, isLoading } = useCities();
-  const [mapPosition, setMapPosition] = useState([40, 40]);
+
+  const [mapPosition, setMapPosition] = useState([51.505, -0.09]); // any valid co-ordinate for initial mark
   // const [searchParams] = useSearchParams();
   const {
     isLoading: isLoadingPosition,
@@ -36,61 +37,48 @@ function Map() {
 
   useEffect(
     function () {
-      if (geolocationPosition)
-        setMapPosition([geolocationPosition.lat, geolocationPosition]);
+      //  here is main catch
+      if (geolocationPosition?.lat && geolocationPosition?.lng) {
+        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+      }
     },
     [geolocationPosition]
   );
 
-  console.log(cities);
   const Dummy = () => {
     return (
       <div className={styles.mapContainer}>
-        {/* <Button type="position" onClick={getPosition}>
+        <Button type="position" onClick={getPosition}>
           {isLoadingPosition ? "Loading..." : "Use your position"}
-        </Button> */}
-        {
-          <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={position}>
+        </Button>
+        <MapContainer
+          center={mapPosition}
+          zoom={6}
+          scrollWheelZoom={true}
+          className={styles.map}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+          />
+          {cities?.map((city) => (
+            <Marker
+              position={[city?.position?.lat, city?.position?.lng]}
+              key={city?.id}
+            >
               <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
+                <span>{city?.emoji}</span>
+                <span>{city?.cityName}</span>
               </Popup>
             </Marker>
-          </MapContainer>
-          // <MapContainer
-          //   center={mapPosition}
-          //   zoom={6}
-          //   scrollWheelZoom={true}
-          //   className={styles.map}
-          // >
-          //   <TileLayer
-          //     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          //     url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-          //   />
-          //   {cities?.map((city) => (
-          //     <Marker
-          //       position={[city?.position?.lat, city?.position?.lng]}
-          //       // position={[435636643, 54655363]}
-          //       key={city?.id}
-          //     >
-          //       <Popup>
-          //         <span>{city?.emoji}</span>
-          //         <span>{city?.cityName}</span>
-          //       </Popup>
-          //     </Marker>
-          //   ))}
-          //   <ChangeCenter position={mapPosition} />
-          //   <DetectClick />
-          // </MapContainer>
-        }
+          ))}
+          <ChangeCenter position={mapPosition} />
+          <DetectClick />
+        </MapContainer>
       </div>
     );
   };
-  return !isLoading && <Dummy />;
+  return <Dummy />;
 }
 
 function ChangeCenter({ position }) {
