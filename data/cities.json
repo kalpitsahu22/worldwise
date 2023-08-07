@@ -1,0 +1,76 @@
+{
+  "cities": [
+    {
+      "cityName": "Lisbon",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2027-10-31T15:59:59.138Z",
+      "notes": "My favorite city so far!",
+      "position": {
+        "lat": 38.727881642324164,
+        "lng": -9.140900099907554
+      },
+      "id": 73930385
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2027-07-15T08:22:53.976Z",
+      "notes": "",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": -3.7133789062500004
+      },
+      "id": 17806751
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2027-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.53586782505711,
+        "lng": 13.376933665713324
+      },
+      "id": 98443197
+    },
+    {
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2027-11-15T08:45:00.751Z",
+      "notes": "The city of love!",
+      "position": {
+        "lat": 48.856613,
+        "lng": 2.352222
+      },
+      "id": 89218746
+    },
+    {
+      "cityName": "Sydney",
+      "country": "Australia",
+      "emoji": "🇦🇺",
+      "date": "2027-09-05T12:30:20.415Z",
+      "notes": "Amazing beaches and beautiful harbor!",
+      "position": {
+        "lat": -33.86882,
+        "lng": 151.209296
+      },
+      "id": 62973823
+    },
+    {
+      "cityName": "New York City",
+      "country": "United States",
+      "emoji": "🇺🇸",
+      "date": "2027-11-20T16:10:05.630Z",
+      "notes": "The city that never sleeps!",
+      "position": {
+        "lat": 40.712776,
+        "lng": -74.005974
+      },
+      "id": 93285010
+    }
+  ]
+}
